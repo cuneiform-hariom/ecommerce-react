@@ -1,6 +1,8 @@
+// pages/cart.js
+
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { remove } from '../store/cartSlice';
+import { remove, updateQuantity } from '../store/cartSlice';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
@@ -11,8 +13,13 @@ const Cart = () => {
     dispatch(remove(productId));
   };
 
+  const handleQuantityChange = (productId, newQuantity) => {
+    dispatch(updateQuantity({ id: productId, quantity: newQuantity }));
+  };
+
   const calculateTotal = () => {
-    return products.reduce((total, product) => total + product.price, 0);
+    const total = products.reduce((total, product) => total + product.price * product.quantity, 0);
+    return total.toFixed(2);
   };
 
   return (
@@ -40,7 +47,6 @@ const Cart = () => {
         </thead>
         <tbody>
           {products.map((product) => {
-            console.log('cart:', product)
             return (
               <tr key={product.id}>
                 <td className='try'>
@@ -51,9 +57,19 @@ const Cart = () => {
                     <h5>{product.title}</h5>
                   </Link>
                 </td>
-                <td></td>
                 <td>
-                  <h5>{product.price}</h5>
+                  <input
+                    type='number'
+                    min= '1'
+                    className='qtybox'
+                    value={product.quantity}
+                    onChange={(e) =>
+                      handleQuantityChange(product.id, parseInt(e.target.value, 10))
+                    }
+                  />
+                </td>
+                <td>
+                  <h5>₹ {(product.price * product.quantity).toFixed(2)}</h5>
                 </td>
                 <td>
                   <button
@@ -73,7 +89,7 @@ const Cart = () => {
             <td></td>
             <td></td>
             <td>
-              <h5>{calculateTotal()}</h5>
+              <h5>₹ {calculateTotal()}</h5>
             </td>
             <td>
               <button className='btn btn-success'>Checkout Now</button>

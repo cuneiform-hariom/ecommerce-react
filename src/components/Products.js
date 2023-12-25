@@ -35,7 +35,9 @@ const Products = () => {
                         return (
                             <div className="col-md-3 mb-4" key={product.id}>
                                 <div className="productcard card">
-                                    <img src={product.image} className="card-img-top" alt="..." />
+                                    <Link to={`/products/${product.id}`}>
+                                        <img src={product.image} className="card-img-top" alt="..." />
+                                    </Link>
                                     <div className="card-body">
                                         <p className="card-text">Category : {product.category}</p>
                                         <Link to={`/products/${product.id}`}>
@@ -47,11 +49,9 @@ const Products = () => {
                                 </div>
                             </div>
                         )
-
                     })
                 }
             </div>
-
         </div>
     )
 }

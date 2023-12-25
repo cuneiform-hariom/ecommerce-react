@@ -60,3 +60,7 @@ a{
   flex-direction: column;
   gap: 10px;
 }
+
+.qtybox{
+  width: 50px;
+}
