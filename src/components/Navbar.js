@@ -9,13 +9,12 @@ const Navbar = () => {
 
   return (
     <div className='navbar'>
-      <span>Redux Practical</span>
+      <Link className='navlink' to='/'>
+        <h2>Ecommerce App</h2>
+      </Link>
       <nav>
         <Link className='navlink' to='/'>Home</Link>
-        <Link className='navlink' to='/cart'>Cart</Link>
-        <span className="cartcount">
-            Cart Item : {itemcount.length}
-        </span>
+        <Link className='navlink' to='/cart'>Cart({itemcount.length})</Link>
       </nav>
     </div>
   )

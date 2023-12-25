@@ -1,3 +1,17 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p{
+  margin-bottom: 0 !important;
+}
+
+a{
+  text-decoration: none;
+}
+
 .t-center{
   text-align: center;
 }
@@ -33,4 +47,16 @@
 
 .carttable tr img{
   width: 30px;
+}
+
+.singleProduct .productImage{
+  max-height: 400px;
+  margin: auto;
+  display: block;
+}
+
+.singleProduct .productDesc{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
